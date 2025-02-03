@@ -11,40 +11,43 @@ class Board:
     def __init__(self, game):
         self.game = game
         self.tiles = {}
-      
-      
-    def setup_board(self):
+        
+    def setup_board(self): # make better later
         for pos, type in WHITE_STARTING_POS.items():
             color = 'white'
             if type == 'rook':
                 self.game.pieces.append(Rook(pos, color))
-            # elif type == 'horse':
-            #     self.game.pieces.append(Horse(pos, color))
-            # elif type == 'bishop':
-            #     self.game.pieces.append(Bishop(pos, color))
-            # elif type == 'queen':
-            #     self.game.pieces.append(Queen(pos, color))
-            # elif type == 'king':
-            #     self.game.pieces.append(King(pos, color))
-            # else:
-            #     self.game.pieces.append(Pawn(pos, color))
+            elif type == 'horse':
+                self.game.pieces.append(Horse(pos, color))
+            elif type == 'bishop':
+                self.game.pieces.append(Bishop(pos, color))
+            elif type == 'queen':
+                self.game.pieces.append(Queen(pos, color))
+            elif type == 'king':
+                self.game.pieces.append(King(pos, color))
+            else:
+                self.game.pieces.append(Pawn(pos, color))
         
         for pos, type in BLACK_STARTING_POS.items():
             color = 'black'
             if type == 'rook':
                 self.game.pieces.append(Rook(pos, color))
-            # elif type == 'horse':
-            #     self.game.pieces.append(Horse(pos, color))
-            # elif type == 'bishop':
-            #     self.game.pieces.append(Bishop(pos, color))
-            # elif type == 'queen':
-            #     self.game.pieces.append(Queen(pos, color))
-            # elif type == 'king':
-            #     self.game.pieces.append(King(pos, color))
-            # else:
-            #     self.game.pieces.append(Pawn(pos, color))
+            elif type == 'horse':
+                self.game.pieces.append(Horse(pos, color))
+            elif type == 'bishop':
+                self.game.pieces.append(Bishop(pos, color))
+            elif type == 'queen':
+                self.game.pieces.append(Queen(pos, color))
+            elif type == 'king':
+                self.game.pieces.append(King(pos, color))
+            else:
+                self.game.pieces.append(Pawn(pos, color))
               
-                
+    
+    def update(self):
+        pass
+        
+          
     def render(self, surf):
         c = 0
         for y in range(ROWS):
