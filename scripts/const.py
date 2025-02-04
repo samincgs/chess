@@ -49,7 +49,11 @@ WHITE_STARTING_POS = {
     (6, 6): 'pawn',    
     (7, 6): 'pawn',
 }
-RENDER_OFFSET = 4
+RENDER_OFFSET = 4 # because size of square is diff from img size 
 
 # COLORS
-BG_COLOR = ''
+BG_COLOR = (60, 80, 121)
+CHECKER_COLOR_1 = (25, 25, 112)
+CHECKER_COLOR_2 = (173, 216, 230)
+LINE_COLOR = (255, 255, 255)
+SHADOW_COLOR = ''

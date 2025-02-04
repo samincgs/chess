@@ -1,6 +1,6 @@
 from .piece import Piece
 
 class Rook(Piece):
-    def __init__(self, pos, color):
+    def __init__(self, board, pos, color):
         self.type = 'rook'
-        super().__init__(pos, color)
+        super().__init__(board, pos, color)

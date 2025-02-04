@@ -4,22 +4,23 @@ from ..utils import load_image
 from ..const import *
 
 class Piece:
-    def __init__(self, pos, color):
+    def __init__(self, board, pos, color):
+        self.board = board
         self.pos = list(pos)
         self.color = color
         self.image = load_image(IMG_PATH + color + '/' + self.type +'.png', alpha=True)
         self.selected = False
-        
         self.moves = []
     
+    def is_on_board(self, x, y):
+        return 0 <= x <= 7 and 0 <= y <= 7
+    
+    def make_move(self, new_pos):
+        self.pos = list(new_pos)
+        
     def show_moves(self):
         pass
     
-    def update(self):
-        if self.selected:
-            self.moves = self.show_moves()
-        else:
-            self.moves = []
     
     def render(self, surf):
         surf.blit(self.image, (self.pos[0] * SIZE + RENDER_OFFSET, self.pos[1] * SIZE + RENDER_OFFSET))
