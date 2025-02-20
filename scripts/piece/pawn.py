@@ -7,12 +7,16 @@ class Pawn(Piece):
         
         self.direction = 1 if color == 'black' else -1
         
-        
+    def make_move(self, new_pos):
+        if self.board.first_pawn_move[self.color]:
+            self.board.first_pawn_move[self.color] = False
+        self.pos = list(new_pos)
+    
     def show_moves(self):
         moves = []
         
         # moves twice on first turn
-        if self.board.game.turn[0] in [0, 1]:
+        if self.board.first_pawn_move[self.color]:
             step_count = 2
             for i in range(step_count):
                 moves.append([self.pos[0], self.pos[1] + self.direction * (i + 1)])
@@ -24,7 +28,7 @@ class Pawn(Piece):
         # en passant
         
         # capture
-
+        
         
         self.moves = moves
         

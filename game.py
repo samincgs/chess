@@ -2,6 +2,7 @@ import pygame
 import sys
 
 from scripts.board import Board
+from scripts.ui import UI
 from scripts.const import *
 
 class Game:
@@ -13,12 +14,12 @@ class Game:
         
         self.clock = pygame.time.Clock()
         
-        self.board = Board(self)        
+        self.board = Board(self)     
+        self.ui = UI(self)   
         
         self.mpos = None
         self.turn = [0, 'white']
-        
-                
+           
     def run(self):
         while True:
             self.display.fill(BG_COLOR)
@@ -34,13 +35,12 @@ class Game:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        self.board.handle_click(self.mpos)
-                        
-                                     
-                                
+                        self.board.handle_click(self.mpos)       
+                  
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
+            self.ui.render(self.screen)
             pygame.display.update()
-            self.clock.tick(60)
+            dt = self.clock.tick(FPS)
             
 if __name__ == '__main__':
     Game().run()

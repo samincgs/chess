@@ -21,9 +21,8 @@ class Piece:
     def show_moves(self):
         pass
     
-    
     def render(self, surf):
         surf.blit(self.image, (self.pos[0] * SIZE + RENDER_OFFSET, self.pos[1] * SIZE + RENDER_OFFSET))
         if self.moves:
             for move in self.moves:
-                pygame.draw.circle(surf, (0, 0, 0), (move[0] * SIZE + SIZE // 2, move[1] * SIZE + SIZE // 2), 6)
+                pygame.draw.circle(surf, (0, 0, 0), (move[0] * SIZE + SIZE // 2, move[1] * SIZE + SIZE // 2), 5)

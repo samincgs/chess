@@ -26,9 +26,11 @@ class Board:
                 
         self.selected_piece = None
         
+        self.first_pawn_move = {'white' : True, 'black': True}
+        
         self.setup_board()
     
-    def setup_board(self): # make better later
+    def setup_board(self):
         for pos, type in WHITE_STARTING_POS.items():
             self.pieces.append(CHESS_TYPES[type](self, pos, 'white'))
             
@@ -52,7 +54,7 @@ class Board:
             if clicked_pos and clicked_pos.color == self.game.turn[1]:
                 
                 # reset all the pieces shown moves
-                self.reset_pieces()
+                self.reset_pieces(self.pieces)
                 
                 # show all current pieces moves
                 clicked_pos.show_moves()
@@ -60,6 +62,9 @@ class Board:
                 if self.selected_piece != clicked_pos:
                     self.selected_piece = clicked_pos
                     return
+                else:
+                    self.selected_piece = None
+                    self.reset_pieces(self.pieces)
         
         if self.selected_piece:
             if list(pos) in self.selected_piece.moves:
@@ -69,8 +74,6 @@ class Board:
                 self.game.turn[0] += 1
                 self.game.turn[1] = 'black' if self.game.turn[1] == 'white' else 'white'
                 
-        
-        
     def render(self, surf):
         c = 0
         for y in range(ROWS):
@@ -92,5 +95,5 @@ class Board:
             piece.render(surf)
         
         # line seperator
-        pygame.draw.line(surf, LINE_COLOR, (192, 0), (192, 192))
+        pygame.draw.line(surf, LINE_COLOR, (BOARD_SIZE, 0), (BOARD_SIZE, BOARD_SIZE))
                 
