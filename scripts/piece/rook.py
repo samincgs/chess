@@ -1,10 +1,10 @@
 from .piece import Piece
 
 class Rook(Piece):
-    def __init__(self, color):
-        super().__init__(color)
+    def __init__(self, board, color):
+        super().__init__(board, color)
         self.type = 'rook'
-        print(f'data/images/{self.color}/{self.type}.png')
+        self.load_piece()
         
         
     

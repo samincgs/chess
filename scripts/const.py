@@ -1,9 +1,11 @@
+# FILE FOR ALL GLOBAL VARIABLES
+
 # CONFIG
-UI_WIDTH = 80
-BASE_WIDTH = 192 + UI_WIDTH # Extra 80 for UI
-BASE_HEIGHT = 192
-BOARD_SIZE = 192
-SCALE_FACTOR = 3
+UI_WIDTH = 80 # width of the sidebar on the right
+BASE_WIDTH = 192 + UI_WIDTH # Extra 80 for UI 
+BASE_HEIGHT = 192 # height of the screen
+BOARD_SIZE = 192 # total board size
+SCALE_FACTOR = 3 # we multiply the base width and base height with scale factor to get our total screen width
 SCALED_WIDTH = BASE_WIDTH * SCALE_FACTOR
 SCALED_HEIGHT = BASE_HEIGHT * SCALE_FACTOR
 CAPTION = 'Chess'
@@ -16,7 +18,7 @@ FPS = 60
 ROWS, COLS = 8, 8
 SIZE = 24
 
-RANKS = {
+RANKS = {  # dictionary that maps the x mouse position to the rank from left to right
     1: 'a',
     2: 'b',
     3: 'c',
@@ -26,9 +28,9 @@ RANKS = {
     7: 'g',
     8: 'h',
 }
-MAX_RANK = max(RANKS)
+MAX_RANK = max(RANKS) # essentially we get 8 here which is the biggest number in ranks
 
-CHESS_POSITIONS = {
+CHESS_POSITIONS = { # dictionary that maps the chess ranks to a location on the board
     'a1': (1, 1), 'a2': (1, 2), 'a3': (1, 3), 'a4': (1, 4),
     'a5': (1, 5), 'a6': (1, 6), 'a7': (1, 7), 'a8': (1, 8),
 
@@ -55,7 +57,7 @@ CHESS_POSITIONS = {
 }
 
 
-RENDER_OFFSET = 4 # because size of square is diff from img size 
+RENDER_OFFSET = 4 # because size of square is diff from img size so we subtract it from the image to place it in the middle (SIZE of tile is 24 and size of image is 16 so we get 24 - 16 = 8 and we put 4 because we minus that from each side (x,y ))
 
 # COLORS
 BG_COLOR = (46, 54, 109)

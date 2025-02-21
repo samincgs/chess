@@ -2,6 +2,8 @@ import pygame
 import os
 from utils import load_image, clip
 
+# just a file to extract all the images from a spritesheet to its individual png file (don't worry about this) not used in our game
+
 IMG_PATH = 'data/images/'
 IMG_SIZE = 16
 IMG_ORDER = ['king', 'queen', 'bishop', 'horse', 'rook', 'pawn']

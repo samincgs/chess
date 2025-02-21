@@ -1,5 +1,7 @@
 import pygame
 
+# UTILITY Functions used in our code
+
 def load_image(path, colorkey=None, alpha=False):
     img = pygame.image.load(path).convert() if not alpha else pygame.image.load(path).convert_alpha()
     if colorkey:
