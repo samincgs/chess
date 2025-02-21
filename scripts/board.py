@@ -95,5 +95,5 @@ class Board:
             piece.render(surf)
         
         # line seperator
-        pygame.draw.line(surf, LINE_COLOR, (BOARD_SIZE, 0), (BOARD_SIZE, BOARD_SIZE))
+        pygame.draw.line(surf, WHITE_COLOR, (BOARD_SIZE, 0), (BOARD_SIZE, BOARD_SIZE))
                 
