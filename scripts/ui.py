@@ -16,7 +16,7 @@ class UI:
         self.fonts['lato_medium'] = pygame.font.Font(FONT_PATH + '/' + 'lato_medium.ttf', 24)
         self.fonts['lato_bold'] = pygame.font.Font(FONT_PATH + '/' + 'lato_bold.ttf', 24)
     
-    
+
     def render(self, surf):
-        text = self.fonts['lato_regular'].render('Turn: ' + str(self.game.turn[0]), True, (255, 255, 255))
+        text = self.fonts['lato_regular'].render('Turn: ' + str(self.game.turn[0]), True, WHITE_COLOR)
         surf.blit(text, (BOARD_SIZE * 3 + 5, 0))

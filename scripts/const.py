@@ -58,5 +58,5 @@ RENDER_OFFSET = 4 # because size of square is diff from img size
 BG_COLOR = (46, 54, 109)
 CHECKER_COLOR_1 = (202, 221, 240)
 CHECKER_COLOR_2 = (89, 102, 187)
-LINE_COLOR = (255, 255, 255)
+WHITE_COLOR = (255, 255, 255)
 SHADOW_COLOR = ''
