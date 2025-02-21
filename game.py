@@ -27,8 +27,8 @@ class Game:
             self.board.render(self.display)
         
             self.mpos = pygame.mouse.get_pos()
-            self.mpos = (self.mpos[0] // SCALE_FACTOR // SIZE, self.mpos[1] // SCALE_FACTOR // SIZE)
-                  
+            self.mpos = (self.mpos[1] // SCALE_FACTOR // SIZE, self.mpos[0] // SCALE_FACTOR // SIZE) # (y_pos, x_pos)
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
