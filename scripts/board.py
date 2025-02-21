@@ -22,7 +22,8 @@ class Board:
         self.tiles = {}
         
         self.pieces = []
-        self.all_pos = []
+        
+        self.all_pos = [] # #a1 : ->
                 
         self.selected_piece = None
         
@@ -65,6 +66,7 @@ class Board:
                 else:
                     self.selected_piece = None
                     self.reset_pieces(self.pieces)
+                    
         
         if self.selected_piece:
             if list(pos) in self.selected_piece.moves:
@@ -74,21 +76,18 @@ class Board:
                 self.game.turn[0] += 1
                 self.game.turn[1] = 'black' if self.game.turn[1] == 'white' else 'white'
                 
-    def render(self, surf):
-        c = 0
+    def render(self, surf):        
+        c = 1
         for y in range(ROWS):
             c = 0 if c != 0 else 1
             for x in range(COLS):
-                r = pygame.Rect(x * SIZE, y * SIZE, SIZE, SIZE)
                 if c == 0:
                     color = CHECKER_COLOR_1
                     c = 1
                 else:
                     color = CHECKER_COLOR_2
                     c = 0
-                if (x, y) not in self.tiles:
-                    self.tiles[(x, y)] = r
-                pygame.draw.rect(surf, color, r)
+                
         
         
         for piece in self.pieces:
