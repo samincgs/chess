@@ -18,8 +18,10 @@ class Game:
         self.ui = UI(self)   
         
         self.mpos = None
+        self.chess_loc = None 
         self.turn = [0, 'white']
-           
+        
+             
     def run(self):
         while True:
             self.display.fill(BG_COLOR)
@@ -27,8 +29,16 @@ class Game:
             self.board.render(self.display)
         
             self.mpos = pygame.mouse.get_pos()
-            self.mpos = (self.mpos[0] // SCALE_FACTOR // SIZE, self.mpos[1] // SCALE_FACTOR // SIZE)
-                  
+            self.mpos = (self.mpos[0] // SCALE_FACTOR // SIZE + 1, MAX_RANK - self.mpos[1] // SCALE_FACTOR // SIZE)  # +1 to make it 1 - 8, minus the y by 8 to invert it to give proper chess coords
+            
+            if self.mpos[0] <= max(RANKS):
+                self.chess_loc = (RANKS[self.mpos[0]] + str(self.mpos[1]))
+            else:
+                self.chess_loc = None
+                
+            print(self.chess_loc)
+            
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
