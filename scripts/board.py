@@ -31,16 +31,18 @@ class Board:
             'e8': King(self,'black'), 'f8': Bishop(self,'black'), 'g8': Horse(self,'black'), 'h8': Rook(self,'black'),
         }
     
-     
-    def handle_click(self, pos):
+    
+    # pos is the location in chess coords ('a1') and move is True if we are moving the piece else it is False if we are selecting a piece
+    def handle_click(self, pos, move):
         pass
+          
                     
     def render(self, surf):    
         # we use c to control which colors are white and which are blue    
         c = 1
-        for y in range(8, 0, -1): # we go in opposite order from 8 all the way to 1 -> 8, 7, 6, 5 (because chess positions are a8 at the top and a1 at the bottom)
+        for y in range(1, 9): 
             c = 0 if c != 0 else 1 # switch the color on the alternate square
-            for x in range(8, 0, -1): # we go in opposite order from 8 all the way to 1 -> 8, 7, 6, 5 
+            for x in range(1, 9):
                 r = pygame.Rect(y * SIZE - SIZE, x * SIZE - SIZE, SIZE, SIZE)
                 if c == 0:
                     color = CHECKER_COLOR_1
@@ -48,9 +50,9 @@ class Board:
                 else:
                     color = CHECKER_COLOR_2
                     c = 0
-                pygame.draw.rect(surf, color, r)
+                pygame.draw.rect(surf, color, r) # draw the checkered rectangles
            
-        # line seperator
+        # line seperator seperating the board and the ui
         pygame.draw.line(surf, WHITE_COLOR, (BOARD_SIZE, 0), (BOARD_SIZE, BOARD_SIZE))
         
         # render all the chess pieces on the board
@@ -64,6 +66,7 @@ class Board:
                 lastly we minus it from Board Size because we want it in the opposite directory (so it was being rendered a1 at the top a8 at the bottom but we minused it to flip the direction)
                 this puts the white at the bottom and black at the top
                 '''
-                piece.render(surf, (BOARD_SIZE - self.get_pos(chess_pos)[0] * SIZE  + RENDER_OFFSET, BOARD_SIZE - self.get_pos(chess_pos)[1] * SIZE  + RENDER_OFFSET))
+                piece.render(surf, ((self.get_pos(chess_pos)[0] - 1) * SIZE + RENDER_OFFSET, BOARD_SIZE - self.get_pos(chess_pos)[1] * SIZE + RENDER_OFFSET))
+
                 
                 
