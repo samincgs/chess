@@ -20,20 +20,32 @@ class Board:
         
     def setup_board(self):
         self.tiles = {
-            'a1': Rook(self,'white'), 'b1': Horse(self,'white'), 'c1': Bishop(self,'white'), 'd1': Queen(self,'white'), 'e1': King(self,'white'), 'f1': Bishop(self,'white'), 'g1': Horse(self,'white'), 'h1': Rook(self,'white'),
-            'a2': Pawn(self,'white'), 'b2': Pawn(self,'white'), 'c2': Pawn(self,'white'), 'd2': Pawn(self,'white'), 'e2': Pawn(self,'white'), 'f2': Pawn(self,'white'), 'g2': Pawn(self,'white'), 'h2': Pawn(self,'white'),
+            'a1': Rook(self, 'white', self.get_pos('a1')), 'b1': Horse(self, 'white', self.get_pos('b1')), 'c1': Bishop(self, 'white', self.get_pos('c1')), 'd1': Queen(self, 'white', self.get_pos('d1')), 'e1': King(self, 'white', self.get_pos('e1')), 'f1': Bishop(self, 'white', self.get_pos('f1')), 'g1': Horse(self, 'white', self.get_pos('g1')), 'h1': Rook(self, 'white', self.get_pos('h1')),
+            'a2': Pawn(self, 'white', self.get_pos('a2')), 'b2': Pawn(self, 'white', self.get_pos('b2')), 'c2': Pawn(self, 'white', self.get_pos('c2')), 'd2': Pawn(self, 'white', self.get_pos('d2')), 'e2': Pawn(self, 'white', self.get_pos('e2')), 'f2': Pawn(self, 'white', self.get_pos('f2')), 'g2': Pawn(self, 'white', self.get_pos('g2')), 'h2': Pawn(self, 'white', self.get_pos('h2')),
             'a3': None, 'b3': None, 'c3': None, 'd3': None, 'e3': None, 'f3': None, 'g3': None, 'h3': None,
             'a4': None, 'b4': None, 'c4': None, 'd4': None, 'e4': None, 'f4': None, 'g4': None, 'h4': None,
             'a5': None, 'b5': None, 'c5': None, 'd5': None, 'e5': None, 'f5': None, 'g5': None, 'h5': None,
             'a6': None, 'b6': None, 'c6': None, 'd6': None, 'e6': None, 'f6': None, 'g6': None, 'h6': None,
-            'a7': Pawn(self,'black'), 'b7': Pawn(self,'black'), 'c7': Pawn(self,'black'), 'd7': Pawn(self,'black'),'e7': Pawn(self,'black'), 'f7': Pawn(self,'black'), 'g7': Pawn(self,'black'), 'h7': Pawn(self,'black'),
-            'a8': Rook(self,'black'), 'b8': Horse(self,'black'), 'c8': Bishop(self,'black'), 'd8': Queen(self,'black'),
-            'e8': King(self,'black'), 'f8': Bishop(self,'black'), 'g8': Horse(self,'black'), 'h8': Rook(self,'black'),
+            'a7': Pawn(self, 'black', self.get_pos('a7')), 'b7': Pawn(self, 'black', self.get_pos('b7')), 'c7': Pawn(self, 'black', self.get_pos('c7')), 'd7': Pawn(self, 'black', self.get_pos('d7')), 'e7': Pawn(self, 'black', self.get_pos('e7')), 'f7': Pawn(self, 'black', self.get_pos('f7')), 'g7': Pawn(self, 'black', self.get_pos('g7')), 'h7': Pawn(self, 'black', self.get_pos('h7')),
+            'a8': Rook(self, 'black', self.get_pos('a8')), 'b8': Horse(self, 'black', self.get_pos('b8')), 'c8': Bishop(self, 'black', self.get_pos('c8')), 'd8': Queen(self, 'black', self.get_pos('d8')),
+            'e8': King(self, 'black', self.get_pos('e8')), 'f8': Bishop(self, 'black', self.get_pos('f8')), 'g8': Horse(self, 'black', self.get_pos('g8')), 'h8': Rook(self, 'black', self.get_pos('h8')),
         }
     
     
     # pos is the location in chess coords ('a1') and move is True if we are moving the piece else it is False if we are selecting a piece
     def handle_click(self, pos, move):
+        for notation, piece in self.tiles.items():
+            if notation == pos:
+                self.game.selected_tile = pos
+
+                if piece:
+                    self.game.selected_piece = piece
+                    print(piece.get_moveset())
+            else:
+                self.game.selected_tile = None
+                self.game.selected_piece = None
+
+        
         pass
           
                     
