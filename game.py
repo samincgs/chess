@@ -22,6 +22,9 @@ class Game:
         self.chess_loc = None # declare var for the chess ranks 
         self.turn = [0, 'white'] # the first spot is number of total turns, second is whose turn it is
         
+        self.selected_piece = None
+        self.selected_pos = None
+        
              
     def run(self):
         while True:
@@ -44,10 +47,7 @@ class Game:
             # here we check if the mouse position is bigger than the UI sidebar, if it is return None else give us the location
             if self.mpos[0] <= max(RANKS):
                 self.chess_loc = (RANKS[self.mpos[0]] + str(self.mpos[1]))
-            else:
-                self.chess_loc = None
                 
-
             # game event loop
             for event in pygame.event.get():
                 # if we click the x button on the top right of the game close the window
@@ -57,8 +57,14 @@ class Game:
                 
                 # left click on mouse
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1: 
-                        print(self.chess_loc)    
+                    if event.button == 1:
+                        # here we check if the mouse position is bigger than the UI sidebar, if it is return None else give us the location
+                        if self.mpos[0] <= max(RANKS):
+                            if self.selected_pos:
+                                self.board.handle_click(self.chess_loc, move=True)
+                            else:
+                                self.board.handle_click(self.chess_loc, move=False)
+                            print(self.chess_loc)
             
             # scale the display into the size of the screen so the pixel art gets scaled up
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
@@ -67,7 +73,6 @@ class Game:
             
             # control it to 60 FPS (not needed)
             dt = self.clock.tick(FPS)
-
 
 # run the main game file  
 if __name__ == '__main__':
