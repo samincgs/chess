@@ -23,7 +23,7 @@ class Game:
         self.turn = [0, 'white'] # the first spot is number of total turns, second is whose turn it is
         
         self.selected_piece = None
-        self.selected_pos = None
+        self.selected_tile = None
         
              
     def run(self):
@@ -60,11 +60,11 @@ class Game:
                     if event.button == 1:
                         # here we check if the mouse position is bigger than the UI sidebar, if it is return None else give us the location
                         if self.mpos[0] <= max(RANKS):
-                            if self.selected_pos:
+                            if self.selected_tile:
                                 self.board.handle_click(self.chess_loc, move=True)
                             else:
                                 self.board.handle_click(self.chess_loc, move=False)
-                            print(self.chess_loc)
+                        
             
             # scale the display into the size of the screen so the pixel art gets scaled up
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
