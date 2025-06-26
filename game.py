@@ -33,20 +33,6 @@ class Game:
             self.board.render(self.display) # calls the render function from the Board class
         
             self.mpos = pygame.mouse.get_pos() # pygame function to get the current mouse position
-            
-            '''
-             We divide by scale factor because we rendered our display to match the screen size,
-             so if we had to multiply the width by 3 now we divide it by 3 to get the mouse position in the display,
-             we also divide by SIZE to get the location of the individual tiles, since each chess tile is 24 pixels
-             to get the location we divide it
-             ex. mouse pos is in pixels so we divide by size to get tiles
-             (100, 100) -> (100 / 24, 100 / 24) -> (4, 4) so it would be the 4th column 4th row
-            '''
-            self.mpos = (self.mpos[0] // SCALE_FACTOR // SIZE + 1, MAX_RANK - self.mpos[1] // SCALE_FACTOR // SIZE) 
-            
-            # here we check if the mouse position is bigger than the UI sidebar, if it is return None else give us the location
-            if self.mpos[0] <= max(RANKS):
-                self.chess_loc = (RANKS[self.mpos[0]] + str(self.mpos[1]))
                 
             # game event loop
             for event in pygame.event.get():
@@ -54,18 +40,15 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
                 
                 # left click on mouse
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        # here we check if the mouse position is bigger than the UI sidebar, if it is return None else give us the location
-                        if self.mpos[0] <= max(RANKS):
-                            if self.selected_tile:
-                                self.board.handle_click(self.chess_loc, move=True)
-                            else:
-                                self.board.handle_click(self.chess_loc, move=False)
+                    pass
                         
-            
             # scale the display into the size of the screen so the pixel art gets scaled up
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             self.ui.render(self.screen) # draw the ui on the screen

@@ -12,7 +12,7 @@ class Pawn(Piece):
         moveset = []
         if self.has_moved == False:
             moveset.extend([(self.pos[0], self.pos[1] + self.direction), (self.pos[0], self.pos[1] + self.direction * 2)])
-        else: # pawn has moved dumbass
+        else: # pawn has moved
              moveset.extend((self.pos[0], self.pos[1] + self.direction))
         
         return moveset
